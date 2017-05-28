@@ -1,12 +1,12 @@
-#include "renderarea.h"
+#include "gui/renderarea.h"
 #include "ui_renderarea.h"
 #include <QPainter>
 
+using namespace introduction::algorithms::graphs;
+
 RenderArea::RenderArea(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::RenderArea),
-    _pen(),
-    _brush()
+    ui(new Ui::RenderArea)
 {
     ui->setupUi(this);
 }
@@ -14,6 +14,11 @@ RenderArea::RenderArea(QWidget *parent) :
 RenderArea::~RenderArea()
 {
     delete ui;
+}
+
+void RenderArea::setEdges(const std::vector<Edge>& edges)
+{
+    _graph.setEdges(edges);
 }
 
 void RenderArea::paintEvent(QPaintEvent * /* event */)

@@ -3,9 +3,22 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
+// ---------------------------------------------------------------------------------------------------------------------
+// Forward declarations
+// ---------------------------------------------------------------------------------------------------------------------
+namespace Ui
+{
+    class MainWindow;
 }
+
+namespace introduction { namespace algorithms { namespace graphs
+{
+    class Edge;
+}}}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Class MainWindow
+// ---------------------------------------------------------------------------------------------------------------------
 
 class MainWindow : public QMainWindow
 {
@@ -14,6 +27,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void setData(const std::vector<introduction::algorithms::graphs::Edge> &edges);
 
 private:
     Ui::MainWindow *ui;

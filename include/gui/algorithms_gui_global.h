@@ -1,0 +1,7 @@
+#include <QtCore/QtGlobal>
+
+#if defined(ALGORITHMS_GUI_LIB_LIBRARY)
+#  define ALGORITHMS_GUI_LIB_EXPORT Q_DECL_EXPORT
+#else
+#  define ALGORITHMS_GUI_LIB_EXPORT Q_DECL_IMPORT
+#endif

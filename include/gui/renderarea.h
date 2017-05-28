@@ -1,12 +1,13 @@
 #ifndef RENDERAREA_H
 #define RENDERAREA_H
 
+#include "gui/algorithms_gui_global.h"
 #include <QWidget>
-#include <QBrush>
-#include <QPen>
+#include "algorithms/graph.h"
 
-namespace Ui {
-class RenderArea;
+namespace Ui
+{
+    class RenderArea;
 }
 
 class RenderArea : public QWidget
@@ -17,13 +18,15 @@ public:
     explicit RenderArea(QWidget *parent = 0);
     ~RenderArea();
 
+    void setEdges(const std::vector<introduction::algorithms::graphs::Edge>& edges);
+
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
     Ui::RenderArea *ui;
-    QPen _pen;
-    QBrush _brush;
+    introduction::algorithms::graphs::Graph _graph;
+
 };
 
 #endif // RENDERAREA_H

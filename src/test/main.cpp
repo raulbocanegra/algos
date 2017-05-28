@@ -32,8 +32,9 @@ TEST_CASE("Insertion sort", "[insertion_sort]")
 		auto t = std::chrono::duration_cast<std::chrono::duration<double>>(after - before);
 		cout << "Time: " << std::fixed << t.count() << " seconds" << endl;
 		cout << "Time std::sort: " << std::fixed << t_std_sort.count() << " seconds" << endl;
-		cout << "std::sort is " << (t.count() / t_std_sort.count()) << " faster" << endl;
-		CHECK(std::equal(vec.begin(), vec.end(), vec_std_sort.begin()));
+        auto faster_percent = (t_std_sort.count() == 0) ? 0.0 : (100*t.count() / t_std_sort.count());
+        cout << "std::sort is " << faster_percent << "% faster" << endl;
+        CHECK(vec == vec_std_sort);
 	}
 
 	SECTION("merge sort")
@@ -50,8 +51,9 @@ TEST_CASE("Insertion sort", "[insertion_sort]")
 		auto t = std::chrono::duration_cast<std::chrono::duration<double>>(after - before);
 		cout << "Time: " << std::fixed << t.count() << " seconds" << endl;
 		cout << "Time std::sort: " << std::fixed << t_std_sort.count() << " seconds" << endl;
-		cout << "std::sort is " << (t.count() / t_std_sort.count()) << " faster" << endl;
-		CHECK(std::equal(vec.begin(), vec.end(), vec_std_sort.begin()));
+        auto faster_percent = (t_std_sort.count() == 0) ? 0.0 : (100*t.count() / t_std_sort.count());
+        cout << "std::sort is " << faster_percent << "% faster" << endl;
+        CHECK(vec == vec_std_sort);
 	}
 
 	SECTION("bubble sort")
@@ -68,8 +70,9 @@ TEST_CASE("Insertion sort", "[insertion_sort]")
 		auto t = std::chrono::duration_cast<std::chrono::duration<double>>(after - before);
 		cout << "Time: " << std::fixed << t.count() << " seconds" << endl;
 		cout << "Time std::sort: " << std::fixed << t_std_sort.count() << " seconds" << endl;
-		cout << "std::sort is " << (t.count() / t_std_sort.count()) << " faster" << endl;
-		CHECK(std::equal(vec.begin(), vec.end(), vec_std_sort.begin()));
+        auto faster_percent = (t_std_sort.count() == 0) ? 0.0 : (100*t.count() / t_std_sort.count());
+        cout << "std::sort is " << faster_percent << "% faster" << endl;
+        CHECK(vec == vec_std_sort);
 	}
 
 	SECTION("heap sort")
@@ -86,8 +89,9 @@ TEST_CASE("Insertion sort", "[insertion_sort]")
 		auto t = std::chrono::duration_cast<std::chrono::duration<double>>(after - before);
 		cout << "Time: " << std::fixed << t.count() << " seconds" << endl;
 		cout << "Time std::sort: " << std::fixed << t_std_sort.count() << " seconds" << endl;
-		cout << "std::sort is " << (t.count() / t_std_sort.count()) << " faster" << endl;
-		CHECK(std::equal(vec.begin(), vec.end(), vec_std_sort.begin()));
+        auto faster_percent = (t_std_sort.count() == 0) ? 0.0 : (100*t.count() / t_std_sort.count());
+        cout << "std::sort is " << faster_percent << "% faster" << endl;
+        CHECK(vec == vec_std_sort);
 	}
 
 }
