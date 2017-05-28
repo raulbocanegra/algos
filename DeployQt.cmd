@@ -1,0 +1,1 @@
+"C:\Qt\5.8\msvc2015_64\bin\windeployqt.exe" %1 -core -gui -widgets

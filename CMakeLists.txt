@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.7.2)
 
-project(algorithms CXX)
+project(algorithms C CXX)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 # Platform dependent config flags and paths
 if (UNIX)
@@ -53,7 +57,7 @@ qt5_wrap_ui(ALGORITHMS_GUI_FORMS_MOC ${ALGORITHMS_GUI_FORMS})
 qt5_wrap_cpp(ALGORITHMS_GUI_HEADERS_MOC ${ALGORITHMS_GUI_HEADERS})
 
 # Algorithms gui lib
-add_library(algui SHARED ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_HEADERS_MOC} ${ALGORITHMS_GUI_FORMS_MOC} ${ALGORITHMS_GUI_SOURCES})
+add_library(algui STATIC ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_HEADERS_MOC} ${ALGORITHMS_GUI_FORMS_MOC} ${ALGORITHMS_GUI_SOURCES})
 target_include_directories(algui PUBLIC ${ALGORITHMS_INCLUDE_DIR} ${ALGORITHMS_INCLUDE_DIR}/gui)
 target_link_libraries(algui PUBLIC Qt5::Core Qt5::Widgets )
 
