@@ -57,13 +57,13 @@ qt5_wrap_ui(ALGORITHMS_GUI_FORMS_MOC ${ALGORITHMS_GUI_FORMS})
 qt5_wrap_cpp(ALGORITHMS_GUI_HEADERS_MOC ${ALGORITHMS_GUI_HEADERS})
 
 # Algorithms gui lib
-add_library(algui STATIC ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_HEADERS_MOC} ${ALGORITHMS_GUI_FORMS_MOC} ${ALGORITHMS_GUI_SOURCES})
+add_library(algorithms-gui STATIC ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_HEADERS_MOC} ${ALGORITHMS_GUI_FORMS_MOC} ${ALGORITHMS_GUI_SOURCES})
 target_include_directories(algui PUBLIC ${ALGORITHMS_INCLUDE_DIR} ${ALGORITHMS_INCLUDE_DIR}/gui)
 target_link_libraries(algui PUBLIC Qt5::Core Qt5::Widgets )
 
 # Project related commands
 add_executable(algorithms ${ALGORITHMS_SOURCES})
-target_link_libraries(algorithms algui)
+target_link_libraries(algorithms algorithms-gui)
 
 # Testing
 enable_testing()
