@@ -5,27 +5,25 @@
 #include <vector>
 #include <iostream>
 
-using namespace introduction::algorithms;
+using namespace algorithms;
 
-std::vector<graphs::Edge> readFile(const std::string filename)
+std::vector<graphs::Edge> readGraphFile(const std::string filename)
 {
     std::ifstream file(filename);
-    unsigned num_nodes = 0;
+    
+	// read num nodes
+	unsigned num_nodes = 0;
     file >> num_nodes;
-
-    // read edges
+    	
     std::vector<graphs::Edge> edges;
     edges.reserve(num_nodes);
-    std::string line;
-    for (int edges_read = 0; edges_read < num_nodes; ++edges_read)
-    {
-        std::getline(file, line);
-        unsigned start = 0;
-        unsigned end = 0;
-        file >> start >> end;
-        edges.emplace_back(graphs::Edge{start, end});
-        std::cout << start << " " << end << " ";
-        line.clear();
+    
+	// read edges
+	unsigned start = 0;
+	unsigned end = 0;
+    while(file >> start >> end)
+    {   
+		edges.emplace_back(start, end);        
     }
     return edges;
 }
@@ -33,8 +31,8 @@ std::vector<graphs::Edge> readFile(const std::string filename)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    auto edges = readFile("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\CS106L\\1.- GraphViz\\01_GraphViz\\res\\2line");
-    MainWindow w;
+    auto edges = readGraphFile("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\CS106L\\1.- GraphViz\\01_GraphViz\\res\\3grid");
+    MainWindow w;	
     w.setData(edges);
     w.show();
 

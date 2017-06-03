@@ -4,28 +4,65 @@
 #include "algorithms/algorithms_global.h"
 #include <vector>
 
-namespace introduction { namespace algorithms { namespace graphs
-{
-    struct ALGORITHMS_LIB_EXPORT Node
-    {
-        double x;
-        double y;
+namespace algorithms { namespace graphs
+{    
+	using NodeCoord = std::pair<double, double>;
+	// -----------------------------------------------------------------------------------------------------------------
+    // Class Node
+    // -----------------------------------------------------------------------------------------------------------------
+    class ALGORITHMS_LIB Node
+    {	
+	public:
+		Node() = default;
+        Node(const Node& other) = default;
+        explicit Node(double x_pos, double y_pos);
+
+        void print(std::ostream& out) const;
+
+		NodeCoord getPosition() const;
+		
+	private:
+		double _x;
+		double _y;
     };
 
-    struct ALGORITHMS_LIB_EXPORT Edge
+    // operator << for Node to be with ADL
+    std::ostream& operator << (std::ostream& out, const Node& node);
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Class Edge
+    // -----------------------------------------------------------------------------------------------------------------
+    class ALGORITHMS_LIB Edge
     {
-        std::size_t start;
-        std::size_t end;
+	public:	
+        Edge() = default;
+        Edge(const Edge& other) = default;
+        explicit Edge(std::size_t start, std::size_t end);
+
+		std::size_t getStart() const;
+		std::size_t getEnd() const;
+
+        void print(std::ostream& out) const;
+	
+	private:
+		std::size_t _start;
+		std::size_t _end;
     };
 
-    class ALGORITHMS_LIB_EXPORT Graph
+    // operator << for Edge to be with ADL
+    std::ostream& operator << (std::ostream& out, const Edge& edge);
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Class Graph
+    // -----------------------------------------------------------------------------------------------------------------
+    class ALGORITHMS_LIB Graph
     {
     public:
         Graph() = default;
         Graph(const Graph& other) = default;
         ~Graph() = default;
 
-        explicit Graph(const std::vector<Node>& nodes, const std::vector<Edge>& edges);
+        explicit Graph(const std::vector<Edge>& edges);
 
         void setEdges(const std::vector<Edge>& edges);
 
@@ -34,5 +71,5 @@ namespace introduction { namespace algorithms { namespace graphs
         std::vector<Node> _nodes;
         std::vector<Edge> _edges;
     };
-}}} // namespace instroduction::algorithms::graphs
+}} // namespace instroduction::algorithms::graphs
 #endif

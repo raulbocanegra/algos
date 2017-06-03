@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "gui/algorithms_gui_global.h"
+#include "algorithms/graph.h"
 // ---------------------------------------------------------------------------------------------------------------------
 // Forward declarations
 // ---------------------------------------------------------------------------------------------------------------------
@@ -11,16 +12,11 @@ namespace Ui
     class MainWindow;
 }
 
-namespace introduction { namespace algorithms { namespace graphs
-{
-    class Edge;
-}}}
-
 // ---------------------------------------------------------------------------------------------------------------------
 // Class MainWindow
 // ---------------------------------------------------------------------------------------------------------------------
 
-class MainWindow : public QMainWindow
+class ALGORITHMS_GUI_LIB MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -28,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void setData(const std::vector<introduction::algorithms::graphs::Edge> &edges);
+    void setData(const std::vector<algorithms::graphs::Edge> &edges);
 
 private:
     Ui::MainWindow *ui;

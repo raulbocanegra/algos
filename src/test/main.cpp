@@ -4,7 +4,7 @@
 #include <chrono>
 
 using namespace std;
-using namespace introduction::algorithms;
+using namespace algorithms;
 
 TEST_CASE("Insertion sort", "[insertion_sort]")
 {

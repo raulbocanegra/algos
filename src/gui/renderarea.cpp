@@ -2,7 +2,7 @@
 #include "ui_renderarea.h"
 #include <QPainter>
 
-using namespace introduction::algorithms::graphs;
+using namespace algorithms::graphs;
 
 RenderArea::RenderArea(QWidget *parent) :
     QWidget(parent),

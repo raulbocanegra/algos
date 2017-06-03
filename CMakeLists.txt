@@ -21,7 +21,7 @@ if (UNIX)
 elseif (WIN32 AND MSVC)  
   message("Microsoft Visual Compiler Build")
   set( PLATFORM "windows")
-  set(CMAKE_PREFIX_PATH "$ENV{QT_DIR}")
+  set(CMAKE_PREFIX_PATH "$ENV{QT_DIR}" CACHE PATH "Qt root directory")
   add_definitions(
       -DNOMINMAX # https://support.microsoft.com/en-gb/help/143208/prb-using-stl-in-windows-program-can-cause-min-max-conflicts
   )
@@ -34,9 +34,11 @@ endif()
 # Header and sources
 set(ROOT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(ALGORITHMS_INCLUDE_DIR ${ROOT_INCLUDE_DIR}/algorithms)
+set(COMMON_INCLUDE_DIR ${ROOT_INCLUDE_DIR}/common)
 set(ALGORITHMS_HEADERS ${ALGORITHMS_INCLUDE_DIR}/sort.h
                        ${ALGORITHMS_INCLUDE_DIR}/graph.h
                        ${ALGORITHMS_INCLUDE_DIR}/algorithms_global.h
+                       ${COMMON_INCLUDE_DIR}/common.h
                        )
 set(ALGORITHMS_SOURCES ${PROJECT_SOURCE_DIR}/src/graph.cpp
                        )
@@ -66,14 +68,14 @@ qt5_wrap_cpp(ALGORITHMS_GUI_HEADERS_MOC ${ALGORITHMS_GUI_HEADERS})
 # Algorithms lib
 add_library(algorithms-lib SHARED ${ALGORITHMS_HEADERS} ${ALGORITHMS_SOURCES})
 target_include_directories(algorithms-lib PUBLIC ${ROOT_INCLUDE_DIR} ${ALGORITHMS_INCLUDE_DIR})
-target_compile_definitions(algorithms-lib PRIVATE ALGORITHMS_LIB_LIBRARY)
+target_compile_definitions(algorithms-lib PRIVATE BUILDING_ALGORITHMS_LIBRARY)
 
 # Algorithms gui
-add_library(algorithms-gui SHARED ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_HEADERS_MOC}
-                                  ${ALGORITHMS_GUI_FORMS_MOC} ${ALGORITHMS_GUI_SOURCES})
+add_library(algorithms-gui SHARED ${ALGORITHMS_GUI_HEADERS} ${ALGORITHMS_GUI_SOURCES}
+                                  ${ALGORITHMS_GUI_HEADERS_MOC} ${ALGORITHMS_GUI_FORMS_MOC} )
 target_include_directories(algorithms-gui PUBLIC ${ROOT_INCLUDE_DIR} ${ALGORITHMS_GUI_INCLUDE_DIR})
 target_link_libraries(algorithms-gui PUBLIC Qt5::Core Qt5::Widgets algorithms-lib )
-target_compile_definitions(algorithms-gui PRIVATE ALGORITHMS_GUI_LIB_LIBRARY)
+target_compile_definitions(algorithms-gui PRIVATE BUILDING_ALGORITHMS_GUI_LIBRARY)
 
 # Project related commands
 add_executable(algorithms ${PROJECT_SOURCE_DIR}/src/main.cpp)

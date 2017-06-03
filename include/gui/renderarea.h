@@ -18,14 +18,14 @@ public:
     explicit RenderArea(QWidget *parent = 0);
     ~RenderArea();
 
-    void setEdges(const std::vector<introduction::algorithms::graphs::Edge>& edges);
+    void setEdges(const std::vector<algorithms::graphs::Edge>& edges);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
     Ui::RenderArea *ui;
-    introduction::algorithms::graphs::Graph _graph;
+    algorithms::graphs::Graph _graph;
 
 };
 
