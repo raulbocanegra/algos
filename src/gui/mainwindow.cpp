@@ -15,7 +15,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setData(const std::vector<Edge>& edges)
+void MainWindow::setData(const Graph& graph)
 {
-    ui->renderArea->setEdges(edges);
+    ui->renderArea->setData(graph);
 }

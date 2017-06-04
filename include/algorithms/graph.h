@@ -15,11 +15,13 @@ namespace algorithms { namespace graphs
 	public:
 		Node() = default;
         Node(const Node& other) = default;
-        explicit Node(double x_pos, double y_pos);
+		explicit Node(double x_pos, double y_pos);
+	    explicit Node(const NodeCoord& coord);
 
         void print(std::ostream& out) const;
 
 		NodeCoord getPosition() const;
+		void setPosition(const NodeCoord& coord);
 		
 	private:
 		double _x;
@@ -39,8 +41,8 @@ namespace algorithms { namespace graphs
         Edge(const Edge& other) = default;
         explicit Edge(std::size_t start, std::size_t end);
 
-		std::size_t getStart() const;
-		std::size_t getEnd() const;
+		std::size_t start() const;
+		std::size_t end() const;
 
         void print(std::ostream& out) const;
 	
@@ -60,16 +62,27 @@ namespace algorithms { namespace graphs
     public:
         Graph() = default;
         Graph(const Graph& other) = default;
-        ~Graph() = default;
+		~Graph() = default;
 
-        explicit Graph(const std::vector<Edge>& edges);
+        explicit Graph(std::size_t num_nodes, const std::vector<Edge>& edges);
+		void swap(Graph& other);
+		Graph& operator = (Graph other);
 
-        void setEdges(const std::vector<Edge>& edges);
+		std::vector<Node> nodes() const;
+		std::vector<Edge> edges() const;
+		
+		void calcForces();
+
 
     private:
+
+		void _initPositionNodes();
+		
 
         std::vector<Node> _nodes;
         std::vector<Edge> _edges;
     };
+
+	void swap(Graph& lhs, Graph& rhs);
 }} // namespace instroduction::algorithms::graphs
 #endif

@@ -7,7 +7,7 @@
 
 using namespace algorithms;
 
-std::vector<graphs::Edge> readGraphFile(const std::string filename)
+graphs::Graph readGraph(const std::string& filename)
 {
     std::ifstream file(filename);
     
@@ -25,15 +25,16 @@ std::vector<graphs::Edge> readGraphFile(const std::string filename)
     {   
 		edges.emplace_back(start, end);        
     }
-    return edges;
+	
+    return graphs::Graph(num_nodes, edges);
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    auto edges = readGraphFile("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\CS106L\\1.- GraphViz\\01_GraphViz\\res\\3grid");
+    auto graph = readGraph("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\algos\\res\\10grid");
     MainWindow w;	
-    w.setData(edges);
+    w.setData(graph);
     w.show();
 
     return a.exec();

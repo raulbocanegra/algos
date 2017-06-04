@@ -24,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void setData(const std::vector<algorithms::graphs::Edge> &edges);
+    void setData(const algorithms::graphs::Graph &graph);
 
 private:
     Ui::MainWindow *ui;
