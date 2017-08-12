@@ -32,8 +32,8 @@ graphs::Graph readGraph(const std::string& filename)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    auto graph = readGraph("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\algos\\res\\10grid");
-    MainWindow w;	
+    auto graph = readGraph("C:\\Users\\Raul\\OneDrive\\Programming\\C++\\algos\\res\\5grid");
+    MainWindow w;
     w.setData(graph);
     w.show();
 
