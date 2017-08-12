@@ -107,6 +107,11 @@ Graph & algorithms::graphs::Graph::operator=(Graph other)
 	return(*this);
 }
 
+void algorithms::graphs::swap(Graph & lhs, Graph & rhs)
+{
+	lhs.swap(rhs);
+}
+
 std::vector<Node> algorithms::graphs::Graph::nodes() const
 {
 	return _nodes;
@@ -115,11 +120,6 @@ std::vector<Node> algorithms::graphs::Graph::nodes() const
 std::vector<Edge> algorithms::graphs::Graph::edges() const
 {
 	return _edges;
-}
-
-void algorithms::graphs::swap(Graph & lhs, Graph & rhs)
-{
-	lhs.swap(rhs);
 }
 
 void Graph::_initPositionNodes()
