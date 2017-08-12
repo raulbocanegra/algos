@@ -7,6 +7,13 @@
 namespace algorithms { namespace graphs
 {    
 	using NodeCoord = std::pair<double, double>;
+	using NodeForce = std::pair<double, double>;
+	
+	NodeForce operator - (const NodeForce& left, const NodeForce& right);
+	NodeForce operator + (const NodeForce& left, const NodeForce& right);
+    NodeForce& operator +=(NodeForce& left, const NodeForce& right);
+	NodeForce& operator -=(NodeForce& left, const NodeForce& right);
+
 	// -----------------------------------------------------------------------------------------------------------------
     // Class Node
     // -----------------------------------------------------------------------------------------------------------------
@@ -22,6 +29,9 @@ namespace algorithms { namespace graphs
 
 		NodeCoord getPosition() const;
 		void setPosition(const NodeCoord& coord);
+		
+		// this method moves the node adding the force applied to it.
+		void move(const NodeForce& force);
 		
 	private:
 		double _x;
@@ -51,7 +61,7 @@ namespace algorithms { namespace graphs
 		std::size_t _end;
     };
 
-    // operator << for Edge to be with ADL
+    // operator << for Edge to be used with ADL
     std::ostream& operator << (std::ostream& out, const Edge& edge);
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -73,11 +83,9 @@ namespace algorithms { namespace graphs
 		
 		void calcForces();
 
-
     private:
 
 		void _initPositionNodes();
-		
 
         std::vector<Node> _nodes;
         std::vector<Edge> _edges;
